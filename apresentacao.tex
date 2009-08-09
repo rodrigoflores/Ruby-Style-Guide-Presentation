@@ -8,7 +8,7 @@
 
 \title{Guia de estilo para programar em Ruby}
 
-\author{Rodrigo L. M. Flores \\ \url{mail@rodrigoflores.orglores@archlinux-br.org}}
+\author{Rodrigo L. M. Flores \\ \url{mail@rodrigoflores.org}}
 
 \institute{Projeto Archlinux-BR}
 
@@ -17,6 +17,131 @@
 \date{\today}
 
 \frame{\titlepage}
+
+\begin{frame}
+    \frametitle{IMHO...}
+    \begin{block}{Coisas a serem consideradas em um Guia de Estilo}
+        \begin{itemize}
+            \item Guias de estilo são como um buffet e não como uma escritura sagrada
+            \item Mas segui-los como um escritura sagrada faz nosso código ser melhor entendido pelos outros...
+            \item Guias de estilo ajudam a manter um código mais bonito, mas não são a única coisa que mantém um código bonito
+            \item Mesmo que um guia de estilo não seja seguido a risca, todo o código deve seguir as mesmas diretrizes mesmo guia
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Organização do código}
+    \begin{enumerate}
+        \item Cabeçalho com nome do autor e descrição do programa
+        \item Require's
+        \item Include's
+        \item Definições de classes e módulos
+        \item Programa principal
+        \item Código de teste
+    \end{enumerate}
+\end{frame}
+
+% Sugestão de comentários
+
+\begin{frame}
+    \frametitle{Require x Include}
+    \begin{itemize}
+        \item[Require] faz o que o ``include'' de outras linguagens faz: roda o outro arquivo
+        \item[Include] pega todos os métodos de outro módulo e os inclui no módulo atual
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Warnings}
+    \begin{block}{Warnings em Ruby}
+        \begin{itemize}
+            \item Flag \verb@-w@ no interpretador (colocar no shebang também)
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Variáveis globais}
+    \begin{block}{Quando usar ?}
+        Para evitar problemas com conflitos de namespaces e referências acidentais
+        \begin{itemize}
+            \item One-liners
+            \item Variáveis globais pré-definidas (\verb#$. $! $?#)
+        \end{itemize}
+    \end{block}
+    \begin{block}{IMHO...}
+        Cabe a cada um utilizar quando achar necessário. Mas tomar cuidado quando usar.
+    \end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Nome de coisas}
+    \begin{itemize}
+        \centering
+        \item[Classes] \verb#CamelCase#, substantivos
+        \item[Módulos] \verb#CamelCase#, não é fácil recomendar
+        \item[Constantes] \verb#SCREAMING_SNAKE_CASE#, substantivos
+        \item[Siglas] \verb#SCREAMINGCASE# Exemplo: \verb#HTTP XML IME#, 
+        \item[Nomes de métodos] \verb#snake_case#, se possível deve ser um verbo
+        \item[Variáveis] \verb#snake_case#, substantivos (se a variável for local, pode abreviar)
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Inicialização de (Hash|Array|String)}
+    \begin{block}{Dois jeitos possíveis}
+        Escolher (e manter) um deles: \verb#$1.new # ou \verb#{} [] ""#
+    \end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Métodos booleanos}
+    \begin{block}{Devem terminar em ``?''}
+        Exemplos:\\
+        \verb#Math.positive? #\\
+        \verb#Stack.empty?   #\\
+    \end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Ponto e vírgula}
+    \begin{block}{Não usar isso!}
+        Exemplos:\\
+        \verb#($stderr.puts "Error!"; exit 1) unless x == 2#
+    \end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Associações múltiplas}
+    \begin{block}{Use, mas tome cuidado com referências}
+        Exemplo de pegadinha :\\
+        \begin{verbatim}
+irb(main):001:0> foo = bar = Array.new
+=> []
+irb(main):002:0> foo
+=> []
+irb(main):003:0> bar
+=> []
+irb(main):004:0> foo << "baz"
+=> ["baz"]
+irb(main):005:0> foo
+=> ["baz"]
+irb(main):006:0> bar
+=> ["baz"]
+        \end{verbatim}
+    \end{block}
+\end{frame}
+
+% Tamanho da linha
+
+% Recuo (aka i(n?)dentação)
+
+% Linhas em branco
+
+% Espaços em branco
+
+
 
 \begin{frame}
     \frametitle{Dúvidas}
