@@ -156,12 +156,36 @@ irb(main):006:0> bar
 
 % Tamanho da linha
 
+\begin{frame}[fragile]
+    \frametitle{Tamanho da linha}
+    \begin{block}{Máximo}
+        $80$ ou $79$.
+    \end{block}
+    \begin{block}{E se não couber em uma linha o que eu preciso fazer ?}
+        Se o interpretador achar que uma linha não faz sentido, ele tentará achar uma continuação na linha de baixo.
+    \end{block}
+\end{frame}
+
+
 % Recuo (aka i(n?)dentação)
 
 % Linhas em branco
 
 % Espaços em branco
 
+\begin{frame}[fragile]
+    \frametitle{Espaços em branco}
+    \begin{block}{Quando usar ?}
+        Atribuição:\\
+        \verb#a = 1# e não \verb#a=1#
+    \end{block}
+    \begin{block}{Quando não usar ?}
+        Valores padrões em argumentos:\\
+        \verb#def foo(a, b=1)# e não \verb#def foo(a, b = 1)#\\
+        Não separar lista de argumentos da chamada do método:\\
+        \verb#foo.bar(a)# e não \verb#foo.bar (a)#
+    \end{block}
+\end{frame}
 
 
 
